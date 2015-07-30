@@ -38,7 +38,7 @@ public class StudentManager {
   
   private Element getStudentElement(Integer studentId) {    
     @SuppressWarnings("unchecked")
-    List<Element> studentElements = (List<Element>) XmlManager.getInstance().getDocument()
+    List<Element> studentElements = (List<Element>) XmlFileManager.getInstance().getDocument()
                                      .getRootElement().getChild("studentTable")
                                      .getChildren("student");
     for (Element el : studentElements) {

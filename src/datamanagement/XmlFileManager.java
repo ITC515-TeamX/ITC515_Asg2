@@ -9,21 +9,21 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Properties;
 
-public class XmlManager {
-  private static XmlManager self_ = null;
+public class XmlFileManager {
+  private static XmlFileManager self_ = null;
 
   private Document document_;
   private String xmlFile_;
   
   
   
-  public static XmlManager getInstance() {
+  public static XmlFileManager getInstance() {
     if (self_ == null)
-      self_ = new XmlManager();
+      self_ = new XmlFileManager();
     return self_;
   }
 
-  private XmlManager() {
+  private XmlFileManager() {
     init();
 
   }
