@@ -7,7 +7,7 @@ public class StudentManager {
 
     
     private StudentMap sm;private java.util.HashMap<String, StudentMap> um;
-public static StudentManager get() {
+public static StudentManager getInstance() {
         if (self == null) 
             
 self = new StudentManager(); return self; }
