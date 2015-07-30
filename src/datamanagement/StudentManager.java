@@ -36,12 +36,14 @@ public class StudentManager {
 
 
   
-  private Element getStudentElement(Integer id) {
-    List<Element> studentElements = (List<Element>) XMLManager.getXML().getDocument()
+  private Element getStudentElement(Integer studentId) {    
+    @SuppressWarnings("unchecked")
+    List<Element> studentElements = (List<Element>) XmlManager.getInstance().getDocument()
                                      .getRootElement().getChild("studentTable")
                                      .getChildren("student");
     for (Element el : studentElements) {
-      if (id.toString().equals(el.getAttributeValue("sid"))) {
+      String sid = el.getAttributeValue("sid");
+      if (studentId.toString().equals(sid)) {
         return el;
       }
     }
