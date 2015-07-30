@@ -2,7 +2,7 @@ package datamanagement;
 
 public class cgCTL {
 
-	cgUI CGUI;
+	CheckGradeUi CGUI;
 	String cuc = null;
 	Integer currentStudentID = null;
 	boolean changed = false;
@@ -11,43 +11,43 @@ public class cgCTL {
 	}
 
 	public void execute() {
-		CGUI = new cgUI(this);
-		CGUI.setState1(false);
+		CGUI = new CheckGradeUi(this);
+		CGUI.enableUnitSelectable(false);
 
-		CGUI.setState2(false);
-		CGUI.setState3(false);
-		CGUI.setState4(false);
-		CGUI.setState5(false);
-		CGUI.setState6(false);
-		CGUI.Refresh3();
+		CGUI.enableStudentSelectable(false);
+		CGUI.enableCheckButton(false);
+		CGUI.enableChangeButton(false);
+		CGUI.enableMarkFieldsEditable(false);
+		CGUI.enableSaveButton(false);
+		CGUI.resetAllFields();
 
 		ListUnitsCTL luCTL = new ListUnitsCTL();
 		luCTL.listUnits(CGUI);
 		CGUI.setVisible(true);
-		CGUI.setState1(true);
+		CGUI.enableUnitSelectable(true);
 	}
 
 	public void unitSelected(String code) {
 
 		if (code.equals("NONE"))
-			CGUI.setState2(false);
+			CGUI.enableStudentSelectable(false);
 		else {
 			ListStudentsCTL lsCTL = new ListStudentsCTL();
 			lsCTL.listStudents(CGUI, code);
 			cuc = code;
-			CGUI.setState2(true);
+			CGUI.enableStudentSelectable(true);
 		}
-		CGUI.setState3(false);
+		CGUI.enableCheckButton(false);
 	}
 
 	public void studentSelected(Integer id) {
 		currentStudentID = id;
 		if (currentStudentID.intValue() == 0) {
-			CGUI.Refresh3();
-			CGUI.setState3(false);
-			CGUI.setState4(false);
-			CGUI.setState5(false);
-			CGUI.setState6(false);
+			CGUI.resetAllFields();
+			CGUI.enableCheckButton(false);
+			CGUI.enableChangeButton(false);
+			CGUI.enableMarkFieldsEditable(false);
+			CGUI.enableSaveButton(false);
 		}
 
 		else {
@@ -56,10 +56,10 @@ public class cgCTL {
 			IStudentUnitRecord r = s.getUnitRecord(cuc);
 
 			CGUI.setRecord(r);
-			CGUI.setState3(true);
-			CGUI.setState4(true);
-			CGUI.setState5(false);
-			CGUI.setState6(false);
+			CGUI.enableCheckButton(true);
+			CGUI.enableChangeButton(true);
+			CGUI.enableMarkFieldsEditable(false);
+			CGUI.enableSaveButton(false);
 			changed = false;
 
 		}
@@ -68,18 +68,18 @@ public class cgCTL {
 	public String checkGrade(float f, float g, float h) {
 		IUnit u = UnitManager.getInstance().getUnit(cuc);
 		String s = u.getGrade(f, g, h);
-		CGUI.setState4(true);
-		CGUI.setState5(false);
+		CGUI.enableChangeButton(true);
+		CGUI.enableMarkFieldsEditable(false);
 		if (changed) {
-			CGUI.setState6(true);
+			CGUI.enableSaveButton(true);
 		}
 		return s;
 	}
 
 	public void enableChangeMarks() {
-		CGUI.setState4(false);
-		CGUI.setState6(false);
-		CGUI.setState5(true);
+		CGUI.enableChangeButton(false);
+		CGUI.enableSaveButton(false);
+		CGUI.enableMarkFieldsEditable(true);
 		changed = true;
 	}
 
@@ -93,8 +93,8 @@ public class cgCTL {
 		r.setAsg2Mark(asg2);
 		r.setExamMark(exam);
 		StudentUnitRecordManager.getInstance().saveRecord(r);
-		CGUI.setState4(true);
-		CGUI.setState5(false);
-		CGUI.setState6(false);
+		CGUI.enableChangeButton(true);
+		CGUI.enableMarkFieldsEditable(false);
+		CGUI.enableSaveButton(false);
 	}
 }
