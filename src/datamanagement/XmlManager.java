@@ -13,7 +13,7 @@ public class XmlManager {
   private static XmlManager self_ = null;
 
   private Document document_;
-  private String xmlFile;
+  private String xmlFile_;
   
   
   
@@ -30,11 +30,11 @@ public class XmlManager {
 
   public void init() {
     Properties properties = AppProperties.getInstance().getProperties();
-    xmlFile = properties.getProperty("XMLFILE");
+    xmlFile_ = properties.getProperty("XMLFILE");
     try {
       SAXBuilder builder = new SAXBuilder();
       builder.setExpandEntities(true);
-      document_ = builder.build(xmlFile);
+      document_ = builder.build(xmlFile_);
     }
     catch (JDOMException e) {
       System.err.printf("%s", "DBMD: XMLManager : init : caught JDOMException\n");
@@ -55,13 +55,13 @@ public class XmlManager {
 
   
   public void saveDocument() {
-    try (FileWriter fout = new FileWriter(xmlFile)) {
+    try (FileWriter fout = new FileWriter(xmlFile_)) {
       XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
       outputter.output(document_, fout);
       fout.close();
     } 
     catch (IOException ioe) {
-      System.err.printf("%s\n", "DBMD : XMLManager : saveDocument : Error saving XML to " + xmlFile);
+      System.err.printf("%s\n", "DBMD : XMLManager : saveDocument : Error saving XML to " + xmlFile_);
       throw new RuntimeException("DBMD: XMLManager : saveDocument : error writing to file");
     }
   }
