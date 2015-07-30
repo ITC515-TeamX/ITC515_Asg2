@@ -94,10 +94,10 @@ public class CheckGradeControl {
 		IStudent student = StudentManager.getInstance().getStudent(currentStudentId_);
 
 		IStudentUnitRecord record = student.getUnitRecord(currentUnitCode_);
-		record.setAsg1(asg1);
-		record.setAsg2(asg2);
-		record.setExam(exam);
-		StudentUnitRecordManager.instance().saveRecord(record);
+		record.setAsg1Mark(asg1);
+		record.setAsg2Mark(asg2);
+		record.setExamMark(exam);
+		StudentUnitRecordManager.getInstance().saveRecord(record);
 		checkGradeUi_.setState4(true);
 		checkGradeUi_.setState5(false);
 		checkGradeUi_.setState6(false);

@@ -53,7 +53,7 @@ public class UnitManager {
         int asg1Weight = Integer.valueOf(el.getAttributeValue("asg1wgt")).intValue();
         int asg2Weight = Integer.valueOf(el.getAttributeValue("asg2wgt")).intValue();
         int examWeight = Integer.valueOf(el.getAttributeValue("examwgt")).intValue();
-        StudentUnitRecordList studentRecords = StudentUnitRecordManager.instance().getRecordsByUnit(unitCode);
+        StudentUnitRecordList studentRecords = StudentUnitRecordManager.getInstance().getRecordsByUnit(unitCode);
         
         IUnit unit = new Unit(unitCode, unitName,
                             psCutoff, crCutoff, diCutoff, hdCutoff, aeCutoff, 

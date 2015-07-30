@@ -1,6 +1,7 @@
 package datamanagement;
 
 public class Unit implements IUnit {
+
   private String unitCode_;
   private String unitName_;
   private float  psCutoff_;
@@ -117,10 +118,10 @@ public class Unit implements IUnit {
 
   
   
-  public IStudentUnitRecord getStudentRecord(int studentID) {
-    for (IStudentUnitRecord r : studentRecords_) {
-      if (r.getStudentID() == studentID) {
-        return r;
+  public IStudentUnitRecord getStudentRecord(int studentId) {
+    for (IStudentUnitRecord record : studentRecords_) {
+      if (record.getStudentId() == studentId) {
+        return record;
       }
     }
     return null;
@@ -192,7 +193,12 @@ public class Unit implements IUnit {
     if (diCutoff >= hdCutoff) {
       throw new RuntimeException("DI cutoff must be less than HD cutoff");
     }
-
+    // cutoffs OK, so set them
+    psCutoff_ = psCutoff;
+    crCutoff_ = crCutoff;
+    diCutoff_ = diCutoff;
+    hdCutoff_ = hdCutoff;
+    aeCutoff_ = aeCutoff;
   }
 
   
