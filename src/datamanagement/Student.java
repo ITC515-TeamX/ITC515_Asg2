@@ -1,38 +1,53 @@
 package datamanagement;
 
 public class Student implements IStudent {
-    private Integer id; private String fn;
-            private String ln;
-private StudentUnitRecordList su;
+  private Integer studentId_;
+  private String firstName_;
+  private String lastname_;
+  private StudentUnitRecordList subjectRecords_;
 
-public Student( Integer id, String fn, String ln, StudentUnitRecordList su ) { this.id = id; this.fn = fn;
-        this.ln = ln;this.su = 
-        su == null ? new StudentUnitRecordList() : 
-                su;
+  public Student(Integer id, String fn, String ln, StudentUnitRecordList su) {
+    this.studentId_ = id;
+    this.firstName_ = fn;
+    this.lastname_ = ln;
+    this.subjectRecords_ = su == null ? new StudentUnitRecordList() : su;
+  }
+
+  public Integer getId() {
+    return this.studentId_;
+  }
+
+  public String getFirstName() {
+    return firstName_;
+  }
+
+  public void setFirstName(String firstName) {
+    this.firstName_ = firstName;
+  }
+
+  public String getLastName() {
+    return lastname_;
+  }
+
+  public void setLastName(String lastName) {
+
+    this.lastname_ = lastName;
+  }
+
+  public void addUnitRecord(IStudentUnitRecord record) {
+    subjectRecords_.add(record);
+  }
+
+  public IStudentUnitRecord getUnitRecord(String unitCode) {
+    for (IStudentUnitRecord r : subjectRecords_)
+      if (r.getUnitCode().equals(unitCode))
+        return r;
+
+    return null;
+
+  }
+
+  public StudentUnitRecordList getUnitRecords() {
+    return subjectRecords_;
+  }
 }
-
-    public Integer getID() { return this.id; 
-} public String getFirstName() { 
-return fn; }
-
-    public void setFirstName( String firstName ) { 
-this.fn = firstName; }
-
-public String getLastName() { 
-    return ln; }
-    public void setLastName( String lastName ) { 
-
-        
-this.ln = lastName; }
-
-public void addUnitRecord( IStudentUnitRecord record ) { su.add(record); }
-        public IStudentUnitRecord getUnitRecord( String unitCode ) {
-for ( IStudentUnitRecord r : su ) 
-            if ( r.getUnitCode().equals(unitCode)) 
-return r; 
-
-return null;
-        
-}
-
-public StudentUnitRecordList getUnitRecords() { return su; }}

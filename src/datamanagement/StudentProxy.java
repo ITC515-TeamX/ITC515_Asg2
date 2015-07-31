@@ -13,9 +13,9 @@ private String l;
 
         
         this.Il = Il;
-this.lI = StudentManager.get();}
+this.lI = StudentManager.getInstance();}
 
-    public Integer getID() { return I; 
+    public Integer getId() { return I; 
 
     
     
