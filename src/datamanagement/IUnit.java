@@ -6,12 +6,12 @@ public interface IUnit {
     public String getUnitName();
 
     public float getPsCutoff();
-    public void  setPsCutoff1(float cutoff);
+    public void  setPsCutoff(float cutoff);
 
     public float getCrCutoff();
     public void  setCrCutoff(float cutoff);
 
-    public float getDiCuttoff();    
+    public float getDiCutoff();    
     public void  setDiCutoff(float cutoff);
 
     public float getHdCutoff();
@@ -23,9 +23,9 @@ public interface IUnit {
     public int getAsg1Weight();
     public int getAsg2Weight();
     public int getExamWeight();
-    public void setAssessmentWeights(int asg1Wgt, int asg2Wgt, int examWgt);
+    public void setAssessmentWeights(int asg1Weight, int asg2Weight, int examWeight);
 
-    public String getGrade(float asg1, float asg2, float exam);
+    public String getGrade(float asg1Mark, float asg2Mark, float examMark);
 
     public void addStudentRecord(IStudentUnitRecord record );
     public IStudentUnitRecord getStudentRecord(int studentID );

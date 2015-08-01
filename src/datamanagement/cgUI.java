@@ -10,7 +10,7 @@ import java.awt.event.KeyEvent;
 
 public class cgUI extends javax.swing.JFrame implements IUnitLister,
 		IStudentLister {
-	private cgCTL ctl;
+	private CheckGradeControl ctl;
 	private javax.swing.DefaultComboBoxModel uM;
 	private javax.swing.DefaultComboBoxModel rM;
 	float f1;
@@ -18,7 +18,7 @@ public class cgUI extends javax.swing.JFrame implements IUnitLister,
 	float f3;
 	Integer sid;
 
-	public cgUI(cgCTL ctl) {
+	public cgUI(CheckGradeControl ctl) {
 		this.ctl = ctl;
 		uM = new javax.swing.DefaultComboBoxModel(new String[0]);
 		rM = new javax.swing.DefaultComboBoxModel(new String[0]);

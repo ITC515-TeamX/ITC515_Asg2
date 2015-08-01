@@ -21,7 +21,7 @@ return ir != null ? ir : createStudentUnitRecord(studentID, unitCode);}
 
     private IStudentUnitRecord createStudentUnitRecord( Integer uid, String sid ) {
         IStudentUnitRecord ir;
-        for (Element el : (List<Element>) XmlFileManager.getInstance().getDocument().getRootElement().getChild("studentUnitRecordTable").getChildren("record")) {
+       for (Element el : (List<Element>) XmlFileManager.getInstance().getDocument().getRootElement().getChild("studentUnitRecordTable").getChildren("record")) {
         if (uid.toString().equals(el.getAttributeValue("sid")) && sid.equals(el.getAttributeValue("uid"))) {
                 ir = new StudentUnitRecord( new Integer(el.getAttributeValue("sid")),el.getAttributeValue("uid"),new Float(el.getAttributeValue("asg1")).floatValue(),new Float(el.getAttributeValue("asg2")).floatValue(),new Float(el.getAttributeValue("exam")).floatValue() );
                rm.put(ir.getStudentID().toString()+ir.getUnitCode(), ir);return ir;

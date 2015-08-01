@@ -6,8 +6,8 @@ import java.util.List;
 
 
 public class StudentManager {
-  private static StudentManager self = null;
 
+  private static StudentManager self = null;
   private StudentMap students_;
   private java.util.HashMap<String, StudentMap> units_;
 
@@ -31,7 +31,10 @@ public class StudentManager {
   
   public IStudent getStudent(Integer id) {
     IStudent is = students_.get(id);
-    return is != null ? is : createStudent(id);
+    if (is == null ) {
+    	is = createStudent(id);
+    }
+    return is;
   }
 
 
@@ -101,3 +104,4 @@ public class StudentManager {
   
   
 }
+
