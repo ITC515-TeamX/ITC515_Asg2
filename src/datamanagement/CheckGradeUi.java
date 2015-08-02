@@ -6,13 +6,9 @@ import javax.swing.GroupLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Font;
 import java.awt.Color;
-//import java.awt.event.KeyAdapter;
-//import java.awt.event.KeyEvent;
 
 public class CheckGradeUi extends javax.swing.JFrame implements IUnitLister, IStudentLister {
-  /**
-   * 
-   */
+
   private static final long serialVersionUID = -5838201041812945722L;
   private cgCTL checkGradeControl_;
   private javax.swing.DefaultComboBoxModel<String> unitModel_;
@@ -22,6 +18,8 @@ public class CheckGradeUi extends javax.swing.JFrame implements IUnitLister, ISt
   private float examMark_;
   private Integer studentId_;
 
+
+  
   public CheckGradeUi(cgCTL ctl) {
     this.checkGradeControl_ = ctl;
     unitModel_ = new javax.swing.DefaultComboBoxModel<String>(new String[0]);
