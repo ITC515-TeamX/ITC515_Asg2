@@ -1,6 +1,7 @@
 package datamanagement;
 
 public class StudentUnitRecord implements IStudentUnitRecord {
+
   private Integer studentId_;
   private String unitCode_;
   private float asg1Mark_;
@@ -17,6 +18,8 @@ public class StudentUnitRecord implements IStudentUnitRecord {
     this.setExamMark(examMark);
   }
 
+
+  
   public Integer getStudentId() {
     return studentId_;
   }
@@ -76,6 +79,7 @@ public class StudentUnitRecord implements IStudentUnitRecord {
   }
 
 
+  
   public float getExamMark() {
     return examMark_;
   }
