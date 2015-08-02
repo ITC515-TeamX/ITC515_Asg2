@@ -14,7 +14,7 @@ public class StudentManager {
 
   
   public static StudentManager getInstance() {
-    if (self == null){
+    if (self == null) {
       self = new StudentManager();
     }
     return self;
@@ -29,12 +29,12 @@ public class StudentManager {
 
 
   
-  public IStudent getStudent(Integer id) {
-    IStudent is = students_.get(id);
-    if (is == null ) {
-    	is = createStudent(id);
+  public IStudent getStudent(Integer studentId) {
+    IStudent student = students_.get(studentId);
+    if (student == null ) {
+    	student = createStudent(studentId);
     }
-    return is;
+    return student;
   }
 
 
@@ -58,7 +58,7 @@ public class StudentManager {
   private IStudent createStudent(Integer id) {
     Element el = getStudentElement(id);
     if (el != null) {
-      StudentUnitRecordList rlist = StudentUnitRecordManager.instance().getRecordsByStudent(id);
+      StudentUnitRecordList rlist = StudentUnitRecordManager.getInstance().getRecordsByStudent(id);
       String fName = el.getAttributeValue("fname");
       String lName = el.getAttributeValue("lname");
       
@@ -92,9 +92,9 @@ public class StudentManager {
     }
     students = new StudentMap();
     IStudent is;
-    StudentUnitRecordList unitRecords = StudentUnitRecordManager.instance().getRecordsByUnit(unitCode);
+    StudentUnitRecordList unitRecords = StudentUnitRecordManager.getInstance().getRecordsByUnit(unitCode);
     for (IStudentUnitRecord studentRecord : unitRecords) {
-      Integer studentId = new Integer(studentRecord.getStudentID());
+      Integer studentId = new Integer(studentRecord.getStudentId());
       is = createStudentProxy(studentId);
       students.put(is.getId(), is);
     }
@@ -104,4 +104,5 @@ public class StudentManager {
   
   
 }
+
 

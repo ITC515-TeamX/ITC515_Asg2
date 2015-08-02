@@ -2,13 +2,13 @@ package datamanagement;
 
 
 
-public class ListUnitsCTL {
+public class ListUnitsControl {
 
   private UnitManager unitManager_;
 
 
 	
-  public ListUnitsCTL() {
+  public ListUnitsControl() {
     unitManager_ = UnitManager.getInstance();
   }
 

@@ -1,6 +1,7 @@
 package datamanagement;
 
 public class UnitProxy implements IUnit {
+
   private String unitCode_;
   private String unitName_;
 

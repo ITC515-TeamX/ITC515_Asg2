@@ -2,7 +2,7 @@ package datamanagement;
 
 public class CheckGradeControl {
 
-	private cgUI checkGradeUi_;
+	private CheckGradeUi checkGradeUi_;
 	private String currentUnitCode_ = null;
 	private Integer currentStudentId_ = null;
 	private boolean marksChanged_ = false;
@@ -15,34 +15,35 @@ public class CheckGradeControl {
 
 	
 	public void execute() {
-		checkGradeUi_ = new cgUI(this);
-		checkGradeUi_.setState1(false);
+		checkGradeUi_ = new CheckGradeUi(this);
+		checkGradeUi_.enableUnitSelectable(false);
 
-		checkGradeUi_.setState2(false);
-		checkGradeUi_.setState3(false);
-		checkGradeUi_.setState4(false);
-		checkGradeUi_.setState5(false);
-		checkGradeUi_.setState6(false);
-		checkGradeUi_.Refresh3();
+		checkGradeUi_.enableStudentSelectable(false);
+		checkGradeUi_.enableCheckButton(false);
+		checkGradeUi_.enableChangeButton(false);
+		checkGradeUi_.enableMarkFieldsEditable(false);
+		checkGradeUi_.enableSaveButton(false);
+		checkGradeUi_.resetAllFields();
 
-		ListUnitsCTL luCTL = new ListUnitsCTL();
+		ListUnitsControl luCTL = new ListUnitsControl();
 		luCTL.listUnits(checkGradeUi_);
 		checkGradeUi_.setVisible(true);
-		checkGradeUi_.setState1(true);
+		checkGradeUi_.enableUnitSelectable(true);
 	}
 
 
 	
 	public void unitSelected(String unitCode) {
-		if (unitCode.equals("NONE"))
-			checkGradeUi_.setState2(false);
+		if (unitCode.equals("NONE")) {
+			checkGradeUi_.enableStudentSelectable(false);
+		}
 		else {
 			ListStudentsControl lsCTL = new ListStudentsControl();
 			lsCTL.listStudents(checkGradeUi_, unitCode);
 			currentUnitCode_ = unitCode;
-			checkGradeUi_.setState2(true);
+			checkGradeUi_.enableStudentSelectable(true);
 		}
-		checkGradeUi_.setState3(false);
+		checkGradeUi_.enableCheckButton(false);
 	}
 
 
@@ -50,56 +51,60 @@ public class CheckGradeControl {
 	public void studentSelected(Integer studentId) {
 		currentStudentId_ = studentId;
 		if (currentStudentId_.intValue() == 0) {
-			checkGradeUi_.Refresh3();
-			checkGradeUi_.setState3(false);
-			checkGradeUi_.setState4(false);
-			checkGradeUi_.setState5(false);
-			checkGradeUi_.setState6(false);
+			checkGradeUi_.resetAllFields();
+			checkGradeUi_.enableCheckButton(false);
+			checkGradeUi_.enableChangeButton(false);
+			checkGradeUi_.enableMarkFieldsEditable(false);
+			checkGradeUi_.enableSaveButton(false);
 		}
-
 		else {
 			IStudent student = StudentManager.getInstance().getStudent(studentId);
 
 			IStudentUnitRecord record = student.getUnitRecord(currentUnitCode_);
 
 			checkGradeUi_.setRecord(record);
-			checkGradeUi_.setState3(true);
-			checkGradeUi_.setState4(true);
-			checkGradeUi_.setState5(false);
-			checkGradeUi_.setState6(false);
+			checkGradeUi_.enableCheckButton(true);
+			checkGradeUi_.enableChangeButton(true);
+			checkGradeUi_.enableMarkFieldsEditable(false);
+			checkGradeUi_.enableSaveButton(false);
 			marksChanged_ = false;
-
 		}
 	}
 
+
+	
 	public String checkGrade(float asg1Mark, float asg2Mark, float examMark) {
 		IUnit unit = UnitManager.getInstance().getUnit(currentUnitCode_);
 		String grade = unit.getGrade(asg1Mark, asg2Mark, examMark);
-		checkGradeUi_.setState4(true);
-		checkGradeUi_.setState5(false);
+		checkGradeUi_.enableChangeButton(true);
+		checkGradeUi_.enableMarkFieldsEditable(false);
 		if (marksChanged_) {
-			checkGradeUi_.setState6(true);
+			checkGradeUi_.enableSaveButton(true);
 		}
 		return grade;
 	}
 
+
+	
 	public void enableChangeMarks() {
-		checkGradeUi_.setState4(false);
-		checkGradeUi_.setState6(false);
-		checkGradeUi_.setState5(true);
+		checkGradeUi_.enableChangeButton(false);
+		checkGradeUi_.enableSaveButton(false);
+		checkGradeUi_.enableMarkFieldsEditable(true);
 		marksChanged_ = true;
 	}
 
+
+	
 	public void saveGrade(float asg1, float asg2, float exam) {
 		IStudent student = StudentManager.getInstance().getStudent(currentStudentId_);
 
 		IStudentUnitRecord record = student.getUnitRecord(currentUnitCode_);
-		record.setAsg1(asg1);
-		record.setAsg2(asg2);
-		record.setExam(exam);
-		StudentUnitRecordManager.instance().saveRecord(record);
-		checkGradeUi_.setState4(true);
-		checkGradeUi_.setState5(false);
-		checkGradeUi_.setState6(false);
+		record.setAsg1Mark(asg1);
+		record.setAsg2Mark(asg2);
+		record.setExamMark(exam);
+		StudentUnitRecordManager.getInstance().saveRecord(record);
+		checkGradeUi_.enableChangeButton(true);
+		checkGradeUi_.enableMarkFieldsEditable(false);
+		checkGradeUi_.enableSaveButton(false);
 	}
 }
