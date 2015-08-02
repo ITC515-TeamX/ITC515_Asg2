@@ -1,6 +1,10 @@
 # generated files
 *.class
 /bin/
+
+#database file that get modified all the time
+DataManagementDemo_DB.xml
+
 #local configuration files
 .classpath
 .project
