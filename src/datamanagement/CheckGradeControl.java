@@ -25,7 +25,7 @@ public class CheckGradeControl {
 		checkGradeUi_.enableSaveButton(false);
 		checkGradeUi_.resetAllFields();
 
-		ListUnitsCTL luCTL = new ListUnitsCTL();
+		ListUnitsControl luCTL = new ListUnitsControl();
 		luCTL.listUnits(checkGradeUi_);
 		checkGradeUi_.setVisible(true);
 		checkGradeUi_.enableUnitSelectable(true);

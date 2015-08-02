@@ -19,6 +19,7 @@ public class CheckGradeUi extends javax.swing.JFrame implements IUnitLister, ISt
   private Integer studentId_;
 
 
+
   public CheckGradeUi(CheckGradeControl ctl) {
     this.checkGradeControl_ = ctl;
     unitModel_ = new javax.swing.DefaultComboBoxModel<String>(new String[0]);

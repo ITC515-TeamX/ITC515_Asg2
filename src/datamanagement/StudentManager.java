@@ -14,7 +14,7 @@ public class StudentManager {
 
   
   public static StudentManager getInstance() {
-    if (self == null){
+    if (self == null) {
       self = new StudentManager();
     }
     return self;
@@ -29,12 +29,12 @@ public class StudentManager {
 
 
   
-  public IStudent getStudent(Integer id) {
-    IStudent is = students_.get(id);
-    if (is == null ) {
-    	is = createStudent(id);
+  public IStudent getStudent(Integer studentId) {
+    IStudent student = students_.get(studentId);
+    if (student == null ) {
+    	student = createStudent(studentId);
     }
-    return is;
+    return student;
   }
 
 
